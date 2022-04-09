@@ -115,21 +115,20 @@
             let chatMessage = $('#chat-message');
 
             chatMessage.keypress(function(e) {
-                let message = chatMessage.val();
                 if (e.which === 13 && !e.shiftKey) {
-                    socket.emit('sendChatToServer', message);
+                    socket.emit('sendChatToServer', chatMessage.val());
                     chatMessage.val('');
                     return false;
                 }
-
-                socket.emit('receiveChatFromClient', (message) => {
-                    $('.chattings ul').append(`<li class="flex justify-end">
-                        <div class="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
-                            <span class="block">${message}</span>
-                        </div>
-                    </li>`);
-                })
             });
+
+            socket.on('receiveChatFromClient', (message) => {
+                $('.chattings ul').append(`<li class="flex justify-end">
+                    <div class="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
+                        <span class="block">${message}</span>
+                    </div>
+                </li>`);
+            })
         });
     </script>
 
