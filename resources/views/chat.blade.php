@@ -13,11 +13,15 @@
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!--- Vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+
 </head>
 
 <body>
 
-    <div class="container text-center mx-auto">
+    <div class="container text-center mx-auto" id="chat-app">
         <div class="max-w-full mt-4 border rounded">
             <div>
                 <div class="w-full">
@@ -99,38 +103,52 @@
     </div>
 
 
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#chat-app',
+            data: {
+                chats: [],
+            },
+            async mounted() {
+                /* let ip_address = '127.0.0.1';
+                        let socket_port = '3000';
+                        let socket = io.connect(ip_address + ':' + socket_port);
+            
+                        let chatMessage = $('#chat-message');
+            
+                        chatMessage.keypress(function(e) {
+                            if (e.which === 13 && !e.shiftKey) {
+                                socket.emit('sendChatToServer', chatMessage.val());
+                                chatMessage.val('');
+                                return false;
+                            }
+                        });
+            
+                        socket.on('receiveChatFromClient', (message) => {
+                            $('.chattings ul').append(`<li class="flex justify-end">
+                            <div class="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
+                                <span class="block">${message}</span>
+                            </div>
+                        </li>`);
+                        }) */
+
+                console.log('mounted');
+            },
+
+            methods: {
+
+            },
+
+
+        });
+    </script>
+
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
         integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-
-    <script>
-        $(function() {
-            let ip_address = '127.0.0.1';
-            let socket_port = '3000';
-            let socket = io.connect(ip_address + ':' + socket_port);
-
-            let chatMessage = $('#chat-message');
-
-            chatMessage.keypress(function(e) {
-                if (e.which === 13 && !e.shiftKey) {
-                    socket.emit('sendChatToServer', chatMessage.val());
-                    chatMessage.val('');
-                    return false;
-                }
-            });
-
-            socket.on('receiveChatFromClient', (message) => {
-                $('.chattings ul').append(`<li class="flex justify-end">
-                    <div class="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
-                        <span class="block">${message}</span>
-                    </div>
-                </li>`);
-            })
-        });
-    </script>
 
 </body>
 
