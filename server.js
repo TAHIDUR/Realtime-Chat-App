@@ -9,12 +9,12 @@ const io = require('socket.io')(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log('Connected to server');
 
     socket.on('sendChatToServer', (message) => {
-        console.log(message);
-
+        // Send Message to all clients including me
         // io.sockets.emit('receiveChatFromClient', message);
+
+        // Send Message to other clients
         socket.broadcast.emit('receiveChatFromClient', message);
     });
 
